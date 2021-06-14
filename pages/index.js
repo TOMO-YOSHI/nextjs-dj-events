@@ -1,9 +1,44 @@
-import Layout from '../components/Layout'
+import Link from 'next/link'
+import Layout from '@/components/Layout'
+import EventItem from '../components/EventItem'
+import { API_URL } from '../config/index'
 
-export default function Home() {
+export default function Home({ events }) {
+  console.log(events)
   return (
     <Layout>
-      <h1>Home</h1>
+      <h1>Upcoming Events</h1>
+      {
+        events.length === 0 && <h3>No events to show</h3>
+      }
+
+      {
+        events.map((evt)=>(
+          <EventItem key={evt.id} evt={evt} />
+        ))
+      }
+
+      {
+        events.length > 0 && (
+          <Link href='/events'>
+            <a className='btn-secondary'>View All Evetns</a>
+          </Link>
+        )
+      }
     </Layout>
   )
+}
+
+// getStaticProps ... this is called only at build time
+// getServerSideProps ... this is called everytime the page is loaded
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/events?_sort=date:ASC&_limit=3`)
+  const events = await res.json()
+
+  console.log(events)
+
+  return {
+    props: {events},
+    // revalidate: 1,
+  }
 }
