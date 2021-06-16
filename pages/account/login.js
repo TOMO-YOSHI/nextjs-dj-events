@@ -17,7 +17,7 @@ export default function LoginPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log({ email, password })
+        // console.log({ email, password })
        login({email, password})
     }
 
@@ -35,7 +35,7 @@ export default function LoginPage() {
                         <label htmlFor='password'>Password</label>
                         <input type='password' name='password' value={password} onChange={(e) => setPassword(e.target.value)} />
                     </div>
-                    <input type='submit' value='login' className='btn' />
+                    <input type='submit' value='Login' className='btn' />
                 </form>
 
                 <p>

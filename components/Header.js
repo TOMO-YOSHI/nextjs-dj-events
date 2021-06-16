@@ -30,12 +30,12 @@ export default function Header() {
                         <>
                             <li>
                                 <Link href='/events/add'>
-                                    <a>Dashboard</a>
+                                    <a>Add Event</a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href='/account/dashboard'>
-                                    <a>Add Event</a>
+                                    <a>Dashboard</a>
                                 </Link>
                             </li>
                             <li>
